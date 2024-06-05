@@ -10,14 +10,14 @@ for x in range(img.size[0]):
     for y in range(img.size[1]):
         color = img.getpixel((x,y))
 
-        sined_red = 1 - int(math.sin(color[0]) * color[0])
+        sined_red = 1 - int(math.sin(color[0]) * color[0]) #learned PIL library better here, syntax
         sined_green = 2 * int(math.sin(color[1]) * color[1])
-        sined_blue = int(math.sin(color[2]) * color[2])
+        sined_blue = int(math.sin(color[2]) * color[2])     #
         sinedcolor = ((sined_red, sined_green, sined_blue))
 
         img2.putpixel((x,y), sinedcolor)
 
-def spiral(image, density):
+def spiral(image, density): #intended originally to spiral the image, but failed to get past distance function.
     width, height = image.size
 
     max_radius = min(width, height) // 2
@@ -31,7 +31,7 @@ def spiral(image, density):
     for x in range(width):
         for y in range(height):
 
-            #angle of twist is based on density and distance from center
+            #angle of twist is based on density, but nonfunctional with respect to the distance from the center
             if(something):
                 angle = density * (max_radius - min(abs(x - width * 2), abs(y - height // 2)))
 
@@ -39,13 +39,14 @@ def spiral(image, density):
             # else:
             #     angle = density * (max_radius * 2 - min(abs(x - width // 2), abs(y - height // 2)))
             #     something = True
+
             #reposition at new cartesian coord and cast to int
             newX = int((x - width // 2) * angle / max_radius + width // 2)
             newY = int((y - height // 2) * angle / max_radius + height // 2)
 
 
 
-            #copy from original
+            #copy pixel from original image
             if 0 <= newX < width and 0 <= newY < height:
                 pixels[x,y] = image.getpixel((newX, newY))
     
